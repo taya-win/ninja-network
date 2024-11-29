@@ -8,19 +8,21 @@
 </head>
 <body>
     <h2>Currently Available Ninjas</h2>
-    <p>{{$greeting}}</p>
+    @if ($greeting === 'hello')
+        <p>Hi from inside the if statement</p>
+    @endif
 
     <ul>
+        @foreach ($ninjas as $ninja)
         <li>
-            <a href="/ninjas/{{$ninjas[0]['id']}}">
-                {{$ninjas[0]['name']}}
+            <p>
+                {{$ninja['name']}}
+            </p>
+            <a href="/ninjas/{{$ninja['id']}}">
+                View Details
             </a>
         </li>
-                <li>
-            <a href="/ninjas/{{$ninjas[1]['id']}}">
-                {{$ninjas[1]['name']}}
-            </a>
-        </li>
+        @endforeach
     </ul>
 </body>
 </html>
