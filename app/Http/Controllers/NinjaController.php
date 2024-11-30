@@ -37,7 +37,7 @@ class NinjaController extends Controller
 
         Ninja::create($validated);
 
-        return redirect()->route('ninjas.index');
+        return redirect()->route('ninjas.index')->with('success', 'Ninja Created!');
 
     }
 
@@ -46,6 +46,6 @@ class NinjaController extends Controller
 
         $ninja->delete();
 
-        return redirect()->route('ninjas.index');
+        return redirect()->route('ninjas.index')->with('success', "Ninja Deleted!");
     }
 }
