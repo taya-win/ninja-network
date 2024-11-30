@@ -12,6 +12,7 @@
             id="name"
             name="name"
             required
+            value="{{ old('name') }}"
         >
 
         <!-- ninja Strength -->
@@ -21,6 +22,7 @@
             id="skill"
             name="skill"
             required
+            value="{{ old('skill') }}"
         >
 
         <!-- ninja Bio -->
@@ -30,14 +32,14 @@
             id="bio"
             name="bio"
             required
-        ></textarea>
+        >{{ old('bio') }}</textarea>
 
         <!-- select a dojo -->
         <label for="dojo_id">Dojo:</label>
         <select id="dojo_id" name="dojo_id" required>
             <option value="" disabled selected>Select a dojo</option>
             @foreach ($dojos as $dojo)
-            <option value="{{ $dojo->id }}">
+            <option value="{{ $dojo->id }}" {{$dojo->id == old('dojo_id') ? 'selected' : ''}}>
                 {{ $dojo->name }}
             </option>
             @endforeach
@@ -46,5 +48,12 @@
         <button type="submit" class="btn mt-4">Create Ninja</button>
 
         <!-- validation errors -->
+        @if ($errors->any())
+        <ul class="px-4 py-2 bg-red-100">
+            @foreach ($errors->all() as $error)
+            <li class="my-2 text-red-500">{{ $error }}</li>
+            @endforeach
+        </ul>
+        @endif
     </form>
 </x-layout>
