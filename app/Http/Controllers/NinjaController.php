@@ -14,4 +14,14 @@ class NinjaController extends Controller
             'ninjas' => $ninjas,
         ]);
     }
+
+    public function create() {
+        return view('ninjas.create');
+    }
+
+    public function show($id) {
+        $ninja = Ninja::findOrFail($id);
+
+        return view('ninjas.show', ['ninja' => $ninja]);
+    }
 }
